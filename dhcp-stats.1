@@ -1,0 +1,29 @@
+.TH DHCP-STATS 1 2023-18-11
+
+.SH NAME
+dhcp-stats \- monitoring of DHCP communication and display of statistics for ip-prefixes
+
+.SH SYNOPSIS
+.B dhcp-stats
+.RB [ \-r " " \<filename> ]|[ \-i " " \<interface> ] " " <ip-prefix>
+[
+.IR <ip-prefix> 
+[...]]
+
+.SH DESCRIPTION
+.B dhcp-stats
+obtains statistics of the network prefixes based on the number of allocated IP addresses from interface or pcap file.
+When the prefix allocation exceeds 50, 75, 90 or 95%, the program informs the administrator by logging through the syslog server.
+
+.SH OPTIONS
+.B -r <filename>
+    statistics will be created from pcap file named "filename"
+
+.B -i <interface>
+    statistics will be created from traffic on interface named "interface"
+
+.B <ip-prefix>
+    network range, for which the statistics will be generated
+
+.SH EXAMPLE
+dhcp-stats -i eth0  192.168.1.0/26 172.16.32.0/24 192.168.0.0/22
